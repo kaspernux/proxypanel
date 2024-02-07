@@ -7,7 +7,7 @@
  */
 
 /*	F	*/
-function jdate($format, $timestamp = '', $none = '', $time_zone = 'Europe/Moscow', $tr_num = 'ru') {
+function jdate($format, $timestamp = '', $none = '', $time_zone = 'Europe/Moscow', $tr_num = 'fa') {
   $T_sec = 0;
 
   if ($time_zone != 'local') date_default_timezone_set(($time_zone === '') ? 'Europe/Moscow' : $time_zone);
@@ -224,12 +224,12 @@ function jdate($format, $timestamp = '', $none = '', $time_zone = 'Europe/Moscow
   $gregorian_time = date($format, $ts);
 
   // If $tr_num is not 'en', convert $gregorian_time using tr_num() function
-  return ($tr_num != 'en') ? tr_num($gregorian_time, 'ru', '.') : $gregorian_time;
+  return ($tr_num != 'en') ? tr_num($gregorian_time, 'fa', '.') : $gregorian_time;
 }
 
 
 /*	F	*/
-function jstrftime($format, $timestamp = '', $none = '', $time_zone = 'Europe/Moscow', $tr_num = 'ru') {
+function jstrftime($format, $timestamp = '', $none = '', $time_zone = 'Europe/Moscow', $tr_num = 'fa') {
   $T_sec = 0;
   if ($time_zone != 'local') date_default_timezone_set(($time_zone === '') ? 'Europe/Moscow' : $time_zone);
   $ts = $T_sec + (($timestamp === '') ? time() : tr_num($timestamp));
@@ -445,7 +445,7 @@ function jstrftime($format, $timestamp = '', $none = '', $time_zone = 'Europe/Mo
   $gregorian_time = date($format, $ts);
 
   // If $tr_num is not 'en', convert $gregorian_time using tr_num() function
-  return ($tr_num != 'en') ? tr_num($gregorian_time, 'ru', '.') : $gregorian_time;
+  return ($tr_num != 'en') ? tr_num($gregorian_time, 'fa', '.') : $gregorian_time;
 }
 
 
@@ -522,7 +522,7 @@ function jcheckdate($jm, $jd, $jy) {
 function tr_num($str, $mod = 'en', $mf = '٫') {
   $num_a = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.');
   $key_a = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', $mf);
-  return ($mod == 'ru') ? str_replace($num_a, $key_a, $str) : str_replace($key_a, $num_a, $str);
+  return ($mod == 'fa') ? str_replace($num_a, $key_a, $str) : str_replace($key_a, $num_a, $str);
 }
 
 /*	F	*/
