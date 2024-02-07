@@ -89,30 +89,24 @@
                 if (isset($_GET['off'])) {
                 $user_lang = $_GET['off'];
                 
-                // Update language to 'fa' for Persian
-                if ($user_lang === 'fa' || $user_lang === 'ru') {
-                    $sql_on_select = "UPDATE admins SET lang=? WHERE lang=?";
-                    $stmt = $conn->prepare($sql_on_select);
-                    $new_lang = ($user_lang === 'fa') ? 'fa' : 'ru'; // Determine the language to set
-                    
-                    $stmt->bind_param('ss', $new_lang, $user_lang);
-                    $stmt->execute();
-                    
-                    if ($stmt->error) {
-                        $error = $stmt->error;
-                        $stmt->close();
-                        echo "Error: " . $error;
+               if (isset($_GET['off'])) {
+                    $user_lang = $_GET['off'];
+                    $sql_on_select = "UPDATE admins SET lang='fa' WHERE lang=?";
+					$stmt = $conn->prepare($sql_on_select);
+					$stmt->bind_param('s', $user_lang);
+					$stmt->execute();
+					
+                    if (!$stmt) {
+						$error = $stmt->error;
+						$stmt->close();
+                        echo "خطا" . die($error);
                     } else {
-                        $stmt->close();
+						$stmt->close();
                         statusonwizwiz();
                         header("location: index.php");
                     }
-                } else {
-                    // Handle unsupported language
-                    echo "Указан неподдерживаемый язык.";                }
-            }
-                
-
+                }
+			
                 if (isset($_GET['on'])) {
                     $user_lang1 = $_GET['on'];
                     $sql_off_select = "UPDATE admins SET lang='en' WHERE lang=?";
